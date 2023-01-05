@@ -3,6 +3,7 @@ import pygame
 import flocon
 import globals
 
+
 pygame.init()
 
 pygame.display.set_caption("REINE DES NEIGES")
@@ -10,11 +11,10 @@ pygame.display.set_caption("REINE DES NEIGES")
 bg_color = globals.BLACK
 
 listSnowFlake = []
-listSnowFlake2 = []
 
-flocon.create_List(listSnowFlake, 250)
+listSnowOnGround = []
 
-flocon.create_List(listSnowFlake2, 250)
+groupSprite = pygame.sprite.Group()
 
 running = True
 
@@ -26,13 +26,28 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
+            if event.key == pygame.K_SPACE:
+                globals.create_List(listSnowFlake, 250)
 
     globals.screen.fill(globals.BLACK)
 
-    flocon.update(listSnowFlake, -100)
-    flocon.update(listSnowFlake2, 0)
+    for i in listSnowFlake:
+        i.updateSnow()
+        if i.state == "on_ground":
+            listSnowFlake.remove(i)
+            listSnowOnGround.append(i)
+        i.draw()
 
-    print(listSnowFlake[0].state)
+    for i in listSnowOnGround:
+        i.draw()
+
+    # for i in listSnowFlake:
+    #     for g in listSnowOnGround:
+    #         if pygame.sprite.collide_circle(i.rect, g.rect):
+    #             print("COLLISION !!! ")
+
+    globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
+    globals.drawtext("nb item dans liste au sol : " + str(len(listSnowOnGround)), 10, 30)
 
     pygame.display.flip()
 
