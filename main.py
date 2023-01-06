@@ -14,7 +14,7 @@ listSnowFlake = []
 
 listSnowOnGround = []
 
-groupSprite = pygame.sprite.Group()
+listExplo = []
 
 running = True
 
@@ -27,7 +27,7 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             if event.key == pygame.K_SPACE:
-                globals.create_List(listSnowFlake, 250)
+                globals.create_List(listSnowFlake, 50)
 
     globals.screen.fill(globals.BLACK)
 
@@ -36,10 +36,8 @@ while running:
         if i.state == "on_ground":
             listSnowFlake.remove(i)
             listSnowOnGround.append(i)
-        i.draw()
+        i.draw(globals.WHITE)
 
-    for i in listSnowOnGround:
-        i.draw()
 
     # for i in listSnowFlake:
     #     for g in listSnowOnGround:

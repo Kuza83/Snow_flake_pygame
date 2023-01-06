@@ -11,8 +11,8 @@ class Flocon(pygame.sprite.Sprite):
         self.centerx = (self.x, self.y)
         self.speed = speed
         self.size = size
-        self.rect = self.size
         self.state = ""
+        self.color = globals.WHITE
 
     def updateSnow(self):
         self.y += self.speed
@@ -23,5 +23,6 @@ class Flocon(pygame.sprite.Sprite):
             self.y = globals.screen_height - 1
             self.state = "on_ground"
 
-    def draw(self):
-        pygame.draw.circle(globals.screen, globals.WHITE, (self.x, self.y), self.size)
+    def draw(self, color):
+        pygame.draw.circle(globals.screen, color, (self.x, self.y), self.size)
+        #pygame.draw.rect(globals.screen, globals.RED, self.rect)

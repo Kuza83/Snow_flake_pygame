@@ -1,12 +1,13 @@
 import flocon
 import pygame
 import random
+import flocon
 
 BLACK = (0, 0, 0)
-
-RED = (255, 0, 0)
-
 WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
 
 screen_width, screen_height = 800, 600
 
@@ -14,6 +15,8 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 
 pygame.font.init()
 font = pygame.font.Font(pygame.font.get_default_font(), 14)
+
+timer = 0
 
 
 def drawtext(t, x, y):
@@ -30,4 +33,3 @@ def create_List(liste, nb):
         speed = random.uniform(0.5, 3)
         size = random.uniform(0.5, 3)
         liste.append(flocon.Flocon(x, y, speed, size))
-
