@@ -4,13 +4,15 @@ import globals
 
 
 class Flocon(pygame.sprite.Sprite):
-    def __init__(self, x, y, speed, size):
+    def __init__(self, x, y, speed, size, tLife):
         pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
         self.centerx = (self.x, self.y)
         self.speed = speed
         self.size = size
+        self.tLife = 300
+        self.timer = 0
         self.state = ""
         self.color = globals.WHITE
 

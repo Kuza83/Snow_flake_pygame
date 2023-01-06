@@ -32,4 +32,7 @@ def create_List(liste, nb):
         y = -250
         speed = random.uniform(0.5, 3)
         size = random.uniform(0.5, 3)
-        liste.append(flocon.Flocon(x, y, speed, size))
+        tLife = random.randrange(10, 100, 10)
+        liste.append(flocon.Flocon(x, y, speed, size, tLife))
+
+

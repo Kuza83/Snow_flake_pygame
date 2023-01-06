@@ -16,6 +16,8 @@ listSnowOnGround = []
 
 listExplo = []
 
+timer = 0
+
 running = True
 
 while running:
@@ -27,22 +29,20 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             if event.key == pygame.K_SPACE:
-                globals.create_List(listSnowFlake, 50)
+                globals.create_List(listSnowFlake, 5)
 
     globals.screen.fill(globals.BLACK)
 
     for i in listSnowFlake:
+        i.timer += 1
         i.updateSnow()
-        if i.state == "on_ground":
+        # if i.state == "on_ground":
+        #     listSnowFlake.remove(i)
+        #     listSnowOnGround.append(i)
+        if i.tLife > i.timer:
+            i.draw(globals.WHITE)
+        elif i.tLife > i.timer:
             listSnowFlake.remove(i)
-            listSnowOnGround.append(i)
-        i.draw(globals.WHITE)
-
-
-    # for i in listSnowFlake:
-    #     for g in listSnowOnGround:
-    #         if pygame.sprite.collide_circle(i.rect, g.rect):
-    #             print("COLLISION !!! ")
 
     globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
     globals.drawtext("nb item dans liste au sol : " + str(len(listSnowOnGround)), 10, 30)
