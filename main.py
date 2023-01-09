@@ -1,6 +1,6 @@
+import random
 import sys
 import pygame
-import flocon
 import globals
 
 
@@ -12,11 +12,14 @@ bg_color = globals.BLACK
 
 listSnowFlake = []
 
-listSnowOnGround = []
-
-listExplo = []
+groupSprite = pygame.sprite.Group()
 
 timer = 0
+
+timerSnow = 0
+
+timerCreateSnow = random.randint(75, 150)
+creationRand = random.randint(100, 350)
 
 running = True
 
@@ -29,29 +32,24 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             if event.key == pygame.K_SPACE:
-                globals.create_List(listSnowFlake, 5)
+                globals.create_List(listSnowFlake, creationRand)
 
     globals.screen.fill(globals.BLACK)
 
-    for i in listSnowFlake:
-        i.timer += 1
-        i.updateSnow()
-        # if i.state == "on_ground":
-        #     listSnowFlake.remove(i)
-        #     listSnowOnGround.append(i)
-        if i.tLife > i.timer:
-            i.draw(globals.WHITE)
-        elif i.tLife > i.timer:
-            listSnowFlake.remove(i)
+    timer += 1
+    timerSnow += 1
+
+    if timer > timerCreateSnow:
+        globals.create_List(listSnowFlake, creationRand)
+        timer = 0
+
+    globals.updateSnow(listSnowFlake)
+    globals.eraseSnow(listSnowFlake)
 
     globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
-    globals.drawtext("nb item dans liste au sol : " + str(len(listSnowOnGround)), 10, 30)
 
     pygame.display.flip()
-
     pygame.time.Clock().tick(60)
-
-    sys.stdout.flush()
 
 pygame.quit()
 sys.exit()

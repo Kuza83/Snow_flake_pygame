@@ -8,23 +8,31 @@ class Flocon(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.x = x
         self.y = y
-        self.centerx = (self.x, self.y)
         self.speed = speed
         self.size = size
-        self.tLife = 300
+        self.tLife = tLife
         self.timer = 0
         self.state = ""
-        self.color = globals.WHITE
 
     def updateSnow(self):
         self.y += self.speed
-        self.x += random.uniform(0, 1)
-        self.x -= random.uniform(0, 1)
         self.state = "falling"
+        if self.state == "falling":
+            self.x += random.uniform(0, 1.5)
+            self.x -= random.uniform(0, 1.5)
         if self.y > globals.screen_height - 1:
-            self.y = globals.screen_height - 1
-            self.state = "on_ground"
+            self.state = "outScreen"
 
-    def draw(self, color):
-        pygame.draw.circle(globals.screen, color, (self.x, self.y), self.size)
-        #pygame.draw.rect(globals.screen, globals.RED, self.rect)
+    def draw(self):
+        color = 0
+        if color == 0:
+            pygame.draw.circle(globals.screen, globals.WHITE, (self.x, self.y), self.size)
+        if color == 1:
+            pygame.draw.circle(globals.screen, globals.RED, (self.x, self.y), self.size)
+        if color == 2:
+            pygame.draw.circle(globals.screen, globals.GREEN, (self.x, self.y), self.size)
+        if color == 3:
+            pygame.draw.circle(globals.screen, globals.YELLOW, (self.x, self.y), self.size)
+        if color == 4:
+            pygame.draw.circle(globals.screen, globals.BLUE, (self.x, self.y), self.size)
+
