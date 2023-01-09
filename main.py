@@ -44,7 +44,7 @@ while running:
         globals.create_List(listSnowFlake, creationRand)
         timer = 0
 
-    globals.updateSnow(listSnowFlake)
+    globals.updateSnowFall(listSnowFlake)
     globals.eraseSnow(listSnowFlake)
 
     pygame.display.flip()

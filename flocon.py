@@ -18,12 +18,10 @@ class Flocon(pygame.sprite.Sprite):
         if self.state == "falling":
             self.x += random.uniform(0, 1.5)
             self.x -= random.uniform(0, 1.5)
+            self.y += self.speed
         if self.y > globals.screen_height - 1:
             self.state = "outScreen"
-        if self.state != "outScreen":
-            self.y += self.speed
         if self.state == "outScreen":
-            print("sol")
             self.y = globals.screen_height - 1
 
     def draw(self):

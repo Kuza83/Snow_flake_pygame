@@ -1,4 +1,3 @@
-import flocon
 import pygame
 import random
 import flocon
@@ -37,7 +36,7 @@ def create_List(listSnow, nb):
         listSnow.append(flocon.Flocon(x, y, speed, size, tLife))
 
 
-def updateSnow(listSnow):
+def updateSnowFall(listSnow):
     for i in listSnow:
         i.timer += 1
         i.updateSnow()
