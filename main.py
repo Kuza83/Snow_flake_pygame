@@ -15,7 +15,6 @@ listSnowFlake = []
 groupSprite = pygame.sprite.Group()
 
 timer = 0
-
 timerSnow = 0
 
 timerCreateSnow = random.randint(75, 150)
@@ -36,6 +35,8 @@ while running:
 
     globals.screen.fill(globals.BLACK)
 
+    # globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
+
     timer += 1
     timerSnow += 1
 
@@ -45,8 +46,6 @@ while running:
 
     globals.updateSnow(listSnowFlake)
     globals.eraseSnow(listSnowFlake)
-
-    globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
 
     pygame.display.flip()
     pygame.time.Clock().tick(60)
