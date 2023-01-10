@@ -9,14 +9,16 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
-screen_width, screen_height = 1920, 1080
+screen_width, screen_height = 1280, 720
 
-screen = pygame.display.set_mode((screen_width, screen_height), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 pygame.font.init()
 font = pygame.font.Font(pygame.font.get_default_font(), 16)
 
 timer = 0
+
+limitList = 800
 
 
 def drawtext(t, x, y):
@@ -32,7 +34,7 @@ def create_List(listSnow, nb):
         y = random.randint(-300, -100)
         speed = random.uniform(0.5, 3)
         size = random.uniform(0.5, 3)
-        tLife = random.randint(300, 800)
+        tLife = random.randint(300, 600)
         listSnow.append(flocon.Flocon(x, y, speed, size, tLife))
 
 
@@ -47,5 +49,5 @@ def eraseSnow(listSnow):
     for i in reversed(listSnow):
         if i.timer > i.tLife:
             i.size -= 0.2
-        if i.size == 0:
+        if i.size <= 0:
             listSnow.remove(i)

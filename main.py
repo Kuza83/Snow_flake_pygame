@@ -2,7 +2,7 @@ import random
 import sys
 import pygame
 import globals
-
+import plateforme
 
 pygame.init()
 
@@ -18,7 +18,7 @@ timer = 0
 timerSnow = 0
 
 timerCreateSnow = random.randint(75, 150)
-creationRand = random.randint(100, 350)
+creationRand = random.randint(100, 200)
 
 running = True
 
@@ -31,21 +31,24 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
             if event.key == pygame.K_SPACE:
-                globals.create_List(listSnowFlake, creationRand)
+                if len(listSnowFlake) < globals.limitList:
+                    globals.create_List(listSnowFlake, creationRand)
 
     globals.screen.fill(globals.BLACK)
-
-    # globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
 
     timer += 1
     timerSnow += 1
 
-    if timer > timerCreateSnow:
-        globals.create_List(listSnowFlake, creationRand)
+    if timer > timerCreateSnow :
+        if len(listSnowFlake) < globals.limitList:
+          globals.create_List(listSnowFlake, creationRand)
         timer = 0
 
     globals.updateSnowFall(listSnowFlake)
     globals.eraseSnow(listSnowFlake)
+
+    globals.drawtext("nb item dans liste SnowFlake : " + str(len(listSnowFlake)), 10, 10)
+    globals.drawtext("timer : " + str(timer), 10, 30)
 
     pygame.display.flip()
     pygame.time.Clock().tick(60)
